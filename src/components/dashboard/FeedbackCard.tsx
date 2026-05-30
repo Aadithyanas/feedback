@@ -38,7 +38,7 @@ export function FeedbackCard({ feedback }: { feedback: any }) {
             </AvatarFallback>
           </Avatar>
           <div className="flex flex-col">
-            <CardTitle className="text-base font-semibold text-amber-950">
+            <CardTitle className="text-base font-semibold text-black">
               {feedback.anonymous || !feedback.student_name ? "Anonymous Student" : feedback.student_name}
             </CardTitle>
             <span className="text-xs text-amber-900/60">
@@ -53,40 +53,56 @@ export function FeedbackCard({ feedback }: { feedback: any }) {
       
       <CardContent className="pb-4 space-y-4">
         <div>
-          <div className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Course</div>
-          <div className="font-medium">{feedback.course_name}</div>
+          <div className="text-sm font-medium text-black/60 mb-1">Course</div>
+          <div className="font-medium text-black">{feedback.course_name}</div>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <div className="text-xs font-medium text-amber-900/60 mb-1">Overall</div>
+            <div className="text-xs font-medium text-black/60 mb-1">Overall</div>
             <div className="flex items-center text-orange-500">
               <Star className="w-4 h-4 fill-current mr-1" />
-              <span className="font-bold text-amber-950">{feedback.overall_rating}</span>
-              <span className="text-amber-900/40 ml-0.5">/5</span>
+              <span className="font-bold text-black">{feedback.overall_rating}</span>
+              <span className="text-black/40 ml-0.5">/5</span>
             </div>
           </div>
           <div>
-            <div className="text-xs font-medium text-amber-900/60 mb-1">Teaching</div>
+            <div className="text-xs font-medium text-black/60 mb-1">Teaching</div>
             <div className="flex items-center text-orange-500">
               <Star className="w-4 h-4 fill-current mr-1" />
-              <span className="font-bold text-amber-950">{feedback.teaching_clarity}</span>
-              <span className="text-amber-900/40 ml-0.5">/5</span>
+              <span className="font-bold text-black">{feedback.teaching_clarity}</span>
+              <span className="text-black/40 ml-0.5">/5</span>
+            </div>
+          </div>
+          <div>
+            <div className="text-xs font-medium text-black/60 mb-1">Communication</div>
+            <div className="flex items-center text-orange-500">
+              <Star className="w-4 h-4 fill-current mr-1" />
+              <span className="font-bold text-black">{feedback.communication}</span>
+              <span className="text-black/40 ml-0.5">/5</span>
+            </div>
+          </div>
+          <div>
+            <div className="text-xs font-medium text-black/60 mb-1">Knowledge</div>
+            <div className="flex items-center text-orange-500">
+              <Star className="w-4 h-4 fill-current mr-1" />
+              <span className="font-bold text-black">{feedback.subject_knowledge}</span>
+              <span className="text-black/40 ml-0.5">/5</span>
             </div>
           </div>
         </div>
 
         {feedback.liked_most && (
           <div>
-            <div className="text-sm font-medium text-amber-900/60 mb-1">Liked Most</div>
-            <p className="text-sm text-amber-900/80 italic bg-amber-50/50 p-3 rounded-lg">"{feedback.liked_most}"</p>
+            <div className="text-sm font-medium text-black/60 mb-1">Liked Most</div>
+            <p className="text-sm text-black italic bg-amber-50/50 p-3 rounded-lg">"{feedback.liked_most}"</p>
           </div>
         )}
 
         {feedback.improvements && (
           <div>
-            <div className="text-sm font-medium text-amber-900/60 mb-1">Suggested Improvements</div>
-            <p className="text-sm text-amber-900/80 italic bg-amber-50/50 p-3 rounded-lg">"{feedback.improvements}"</p>
+            <div className="text-sm font-medium text-black/60 mb-1">Suggested Improvements</div>
+            <p className="text-sm text-black italic bg-amber-50/50 p-3 rounded-lg">"{feedback.improvements}"</p>
           </div>
         )}
       </CardContent>

@@ -86,7 +86,7 @@ export function FeedbackForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       student_name: "",
-      course_name: "",
+      course_name: "MERN Stack",
       overall_rating: 0,
       teaching_clarity: 0,
       communication: 0,
@@ -223,7 +223,7 @@ export function FeedbackForm() {
                     <FormItem className="col-span-1 md:col-span-2">
                       <FormLabel>Course Name</FormLabel>
                       <FormControl>
-                        <Input placeholder="e.g. Introduction to Computer Science" {...field} />
+                        <Input {...field} readOnly className="bg-amber-50/50 border-amber-200 text-amber-900/60 cursor-not-allowed font-semibold focus-visible:ring-0" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
