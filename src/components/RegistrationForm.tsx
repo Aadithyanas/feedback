@@ -83,8 +83,7 @@ const formSchema = z.object({
   full_name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email"),
   phone: z.string().min(10, "Please enter a valid phone number"),
-  institution_name: z.string().min(2, "Institution name is required"),
-  institution_type: z.string().min(1, "Please select institution type"),
+  qualification: z.string().min(2, "Qualification is required"),
   registration_for: z
     .array(z.string())
     .min(1, "Please select at least one option"),
@@ -105,8 +104,7 @@ export function RegistrationForm() {
       full_name: "",
       email: "",
       phone: "",
-      institution_name: "",
-      institution_type: "",
+      qualification: "",
       registration_for: [],
       tech_stacks: [],
       experience_level: "",
@@ -118,7 +116,14 @@ export function RegistrationForm() {
     setIsSubmitting(true);
     try {
       const { error } = await supabase.from("registrations").insert({
-        ...data,
+        full_name: data.full_name,
+        email: data.email,
+        phone: data.phone,
+        institution_name: data.qualification, // mapping qualification to institution_name DB column
+        institution_type: "N/A", // placeholder since field is removed
+        registration_for: data.registration_for,
+        tech_stacks: data.tech_stacks,
+        experience_level: data.experience_level,
         additional_notes: data.additional_notes || null,
       });
 
@@ -190,7 +195,7 @@ export function RegistrationForm() {
               // registration.form.v1
             </span>
             <CardTitle className="text-3xl font-black tracking-tight text-black uppercase">
-              COACHING REGISTRAR
+              COACHING REGISTER
             </CardTitle>
             <CardDescription className="text-xs text-gray-500 font-mono uppercase tracking-wide">
               Submit your diagnostics to allocate coaching services.
@@ -297,7 +302,7 @@ export function RegistrationForm() {
                 />
               </div>
 
-              {/* Institution Section */}
+              {/* Qualification Section */}
               <div className="space-y-3 pt-4">
                 <div className="flex items-center gap-2 text-gray-500 font-bold text-[10px] uppercase tracking-widest">
                   <span>[SECTION B]</span>
@@ -306,47 +311,20 @@ export function RegistrationForm() {
                 <div className="h-px bg-gray-200" />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6">
                 <FormField
                   control={form.control}
-                  name="institution_name"
+                  name="qualification"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-[10px] uppercase tracking-widest text-gray-600">Institution Name *</FormLabel>
+                      <FormLabel className="text-[10px] uppercase tracking-widest text-gray-600">Qualification *</FormLabel>
                       <FormControl>
                         <Input
-                          placeholder="E.G. MIT, STANFORD"
+                          placeholder="E.G. B.TECH COMPUTER SCIENCE, SELF-TAUGHT"
                           className="h-12 border-gray-300 bg-white text-black rounded-xl focus-visible:ring-0 focus-visible:border-blue-600 transition-colors shadow-sm"
                           {...field}
                         />
                       </FormControl>
-                      <FormMessage className="text-red-500 text-[10px]" />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="institution_type"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-[10px] uppercase tracking-widest text-gray-600">Institution Type *</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        value={field.value || ""}
-                      >
-                        <FormControl>
-                          <SelectTrigger className="h-12 border-gray-300 bg-white text-black rounded-xl focus:ring-0 focus:border-blue-600 transition-colors font-mono uppercase text-xs shadow-sm">
-                            <SelectValue placeholder="Select type" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent className="bg-white border-gray-200 rounded-xl text-black font-mono uppercase text-xs shadow-lg">
-                          <SelectItem value="college">College / University</SelectItem>
-                          <SelectItem value="school">School</SelectItem>
-                          <SelectItem value="bootcamp">Bootcamp</SelectItem>
-                          <SelectItem value="self_learner">Self-Learner</SelectItem>
-                        </SelectContent>
-                      </Select>
                       <FormMessage className="text-red-500 text-[10px]" />
                     </FormItem>
                   )}
@@ -381,10 +359,9 @@ export function RegistrationForm() {
                                   <label
                                     className={`
                                       flex items-center gap-4 p-4 border cursor-pointer transition-colors duration-200 rounded-xl shadow-sm
-                                      ${
-                                        isChecked
-                                          ? "border-blue-600 bg-blue-50 text-blue-900"
-                                          : "border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50"
+                                      ${isChecked
+                                        ? "border-blue-600 bg-blue-50 text-blue-900"
+                                        : "border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50"
                                       }
                                     `}
                                   >
@@ -395,8 +372,8 @@ export function RegistrationForm() {
                                         const updated = checked
                                           ? [...field.value, option.id]
                                           : field.value.filter(
-                                              (v: string) => v !== option.id
-                                            );
+                                            (v: string) => v !== option.id
+                                          );
                                         field.onChange(updated);
                                       }}
                                     />
