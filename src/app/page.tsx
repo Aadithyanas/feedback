@@ -1,39 +1,44 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, BarChart2, MessageSquareHeart } from "lucide-react";
+import { HeroSection } from "@/components/ui/hero-section-shadcnui";
+import { TechStack } from "@/components/ui/tech-stack";
+import { MernFlowAnimation } from "@/components/ui/mern-flow-animation";
+import { AiToolsSection } from "@/components/ui/ai-tools-section";
+import { CurriculumSection } from "@/components/ui/curriculum-section";
+import { FeaturesSection } from "@/components/ui/features-section";
+import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-[#fdfbf7] to-amber-50/50 p-4">
-      <div className="max-w-3xl text-center space-y-8 animate-in fade-in zoom-in duration-700">
-        <div className="inline-flex items-center justify-center p-3 bg-white rounded-2xl shadow-xl shadow-amber-500/10 mb-4 ring-1 ring-amber-100">
-          <MessageSquareHeart className="w-8 h-8 text-amber-600" />
-        </div>
-        
-        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-amber-950">
-          Student <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-orange-500">Feedback</span> Portal
-        </h1>
-        
-        <p className="text-xl text-amber-900/70 max-w-2xl mx-auto leading-relaxed">
-          Help us improve our teaching experience. Your honest feedback shapes the future of our courses and helps educators grow.
-        </p>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
-          <Link href="/feedback">
-            <Button size="lg" className="rounded-full px-8 h-14 text-lg bg-amber-600 hover:bg-amber-700 text-white shadow-lg shadow-amber-500/30 transition-all hover:scale-105">
-              Give Feedback
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-          </Link>
-          
-          <Link href="/dashboard">
-            <Button size="lg" variant="outline" className="rounded-full px-8 h-14 text-lg border-amber-200 bg-white/50 backdrop-blur-sm hover:bg-amber-50 transition-all text-amber-900 hover:text-amber-950">
-              <BarChart2 className="mr-2 w-5 h-5 text-amber-600" />
-              View Dashboard
-            </Button>
-          </Link>
-        </div>
+    <main className="relative min-h-screen bg-white overflow-hidden text-black pt-32 flex flex-col justify-between">
+      {/* Layered Gradient Glow Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute top-[-10%] left-[-5%] w-[600px] h-[600px] bg-[#60B1FF] opacity-30 blur-[120px] rounded-full mix-blend-multiply" />
+        <div className="absolute top-[5%] left-[5%] w-[400px] h-[400px] bg-[#319AFF] opacity-20 blur-[100px] rounded-full mix-blend-multiply" />
       </div>
-    </div>
+
+      <div className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12 w-full flex flex-col gap-12">
+        
+        {/* Framer Motion Hero Section */}
+        <HeroSection />
+
+        {/* Tech Stack Banner */}
+        <TechStack />
+
+        {/* Detailed Curriculum Text Content */}
+        <CurriculumSection />
+
+        {/* Animated MERN Data Flow */}
+        <MernFlowAnimation />
+
+        {/* AI Tools Section */}
+        <AiToolsSection />
+
+        {/* How We Make Magic Section */}
+        <FeaturesSection />
+
+      </div>
+
+      {/* Standard Footer */}
+      <Footer />
+    </main>
   );
 }

@@ -1,21 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fustat, Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { Navbar } from "@/components/Navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const fustat = Fustat({
+  variable: "--font-fustat",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Student Feedback Portal",
-  description: "Modern student feedback system to improve teaching experience",
+  title: "EduPortal — Career Training & Feedback Platform",
+  description:
+    "Register for mock interviews, resume reviews, portfolio feedback, and hands-on tech training. Share your feedback to help educators improve.",
 };
 
 export default function RootLayout({
@@ -24,10 +26,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-white text-black">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${fustat.variable} ${inter.variable} font-sans antialiased min-h-screen bg-white text-black`}
+        style={{ WebkitFontSmoothing: "antialiased" }}
       >
+        <Navbar />
         {children}
         <Toaster position="top-center" richColors />
       </body>
