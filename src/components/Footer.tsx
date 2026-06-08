@@ -7,9 +7,12 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
         
         <div className="flex flex-col gap-2">
-          <span className="font-heading font-bold text-2xl text-black">
-            EduPortal
-          </span>
+          <div className="flex items-center gap-2">
+            <img src="/logo.png" alt="EduPortal Logo" className="w-8 h-8 rounded-full" />
+            <span className="font-heading font-bold text-2xl text-black">
+              EduPortal
+            </span>
+          </div>
           <p className="text-sm text-gray-500">
             Learn smarter, build faster, and grow limitless with AI + MERN stack.
           </p>

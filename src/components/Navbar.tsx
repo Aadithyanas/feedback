@@ -24,7 +24,8 @@ export function Navbar() {
         style={{ border: "1px solid rgba(0,0,0,0.1)" }}
       >
         {/* Logo */}
-        <Link href="/" className="font-heading font-bold text-xl text-black">
+        <Link href="/" className="flex items-center gap-2 font-heading font-bold text-xl text-black">
+          <img src="/logo.png" alt="EduPortal Logo" className="w-8 h-8 rounded-full" />
           EduPortal
         </Link>
 

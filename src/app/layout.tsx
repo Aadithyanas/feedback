@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: "EduPortal — Career Training & Feedback Platform",
   description:
     "Register for mock interviews, resume reviews, portfolio feedback, and hands-on tech training. Share your feedback to help educators improve.",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({
